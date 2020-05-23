@@ -30,7 +30,7 @@ def about_member(member_name):
             if obj["url"] == member_name:
                 member = obj
 #if they match return out object
-        return "<h1>" + member["name"] + "</h1>"
+        return render_template("member.html", member=member)
 
 @app.route('/contact')
 def contact():
