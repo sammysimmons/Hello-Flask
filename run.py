@@ -17,7 +17,20 @@ def about():
         data = json.load(json_data)
     return render_template("about.html", page_title="About",company=data)
 
-
+#crate route decorater for member name, creates new view about member, 
+@app.route("/about/<member_name>")
+def about_member(member_name):
+    member = {}
+    #creates empty object and opens the company.json file for reading
+    with open("data/company.json", "r") as json_data:
+      #variable that passes json data
+        data = json.load(json_data)
+        #iterates through if the url isequal to the member name, then the member object os equal to object
+        for obj in data:
+            if obj["url"] == member_name:
+                member = obj
+#if they match return out object
+        return "<h1>" + member["name"] + "</h1>"
 
 @app.route('/contact')
 def contact():
