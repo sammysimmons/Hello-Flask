@@ -11,19 +11,33 @@
     of about 650 Asiatic lions constitute a slightly smaller race that lives under strict protection in India’s Gir National Park and Wildlife Sanctuary.
 </p>
 
-{%for member in company %}
+<!--if its an odd number display the text first then the img-->
+{% for member in company %}
 
 <div class="row featurette">
-    <div class="col-md-7">
-        <h3>{{ loop.index }} {{ member.name }}</h3>
-
-        <p>
-            {{ member.description }}
-        </p>
+    <!--if loop.index moduler 2 does not equal 0, check the loop index, divide it by 2, ans see if it divides clearly, if it doesnt it displays the html -->
+    {% if loop.index % 2 != 0 %}
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+            <p>{{ member.description }}</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="Picture of {{ member.name }}">
+        </div>
     </div>
-    <div class="col-md-5">
-        <img class="featurette-image img-responsive" src="{{ member.image_source}}">
-    </div>
-</div>
 
-<hr class="featurette-divider"> {% endfor %} {% endblock %}
+    <!--if its an even number display the image first then the txt-->
+    {% else %}
+    <div class="row featurette">
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="Picture of {{ member.name }}">
+        </div>
+        <div class="col-md-7">
+            <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+            <p>{{ member.description }}</p>
+        </div>
+    </div>
+
+
+    <hr class="featurette-divider"> {% endif %} {% endfor %} {% endblock %}
