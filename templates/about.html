@@ -11,11 +11,11 @@
     of about 650 Asiatic lions constitute a slightly smaller race that lives under strict protection in India’s Gir National Park and Wildlife Sanctuary.
 </p>
 
-{%for member in company %} {{ loop.index }}
+{%for member in company %}
 
 <div class="row featurette">
     <div class="col-md-7">
-        <h3>{{ member.name }}</h3>
+        <h3>{{ loop.index }} {{ member.name }}</h3>
 
         <p>
             {{ member.description }}
